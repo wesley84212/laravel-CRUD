@@ -9,7 +9,7 @@ Use laravel to practice CRUD
 - laravel install 1.5.0
 - database
   - mysql
-- vue.js
+- vue.js (frontEnd)
 
 Docker
 ---------------------
@@ -22,6 +22,16 @@ Docker
 - laravel使用熟悉
 - Eloquent ORM OR SQL
 - 前後端分離式開發
+
+環境變數
+---------------------
+- 需自行設定project/config裡面的DB設定檔
+- api Name Rule
+    ```
+      localhost/api/{apiName}/
+      ex: 127.0.0.1/api/user
+          127.0.0.1/api/user/1
+    ```
 
 CLI & 環境常見問題
 ---------------------
