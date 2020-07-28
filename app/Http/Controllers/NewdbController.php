@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\newdb;
+//use App\newdb::setTable();
 use Illuminate\Http\Request;
 
 class NewdbController extends Controller
@@ -14,10 +15,49 @@ class NewdbController extends Controller
      */
     public function index()
     {
-        //
-        $newdb = newdb::all();
-        return response()->json($newdb);
+
+        $inin = newdb::all();
+        $value = $inin[0]->get('id');
+        return response()->json($value);
+
+
     }
+
+    public function index2()
+    {
+
+
+
+        $testcount =newdb::count();
+        echo $testcount;
+
+
+    }
+
+    public function newdata()
+    {
+
+        $y =newdb::count();
+        echo $testcount;
+
+
+    }
+
+    public function todofunc($id)
+    {
+
+        // $idhowmuch =newdb::all();
+        // $idhowmuch = $idhowmuch->where('id', $id);
+        // $idhowmuch->all();
+        $idhowmuch = newdb::find($id);
+        // echo $idhowmuch;
+        echo($idhowmuch->content);
+
+
+    }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -27,6 +67,7 @@ class NewdbController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -38,6 +79,16 @@ class NewdbController extends Controller
     public function store(Request $request)
     {
         //
+        //$newdata = new newdb;
+        $newdata = newdb::create($request->all());
+
+        return $newdata;
+
+        // $newdata->status = $request->status;
+        // $newdata->content = $request->content;
+
+        // $newdata->save();
+        // echo $request;
     }
 
     /**

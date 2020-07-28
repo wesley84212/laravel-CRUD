@@ -19,5 +19,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/newdb', 'NewdbController@index');
+//Route::get('/newdb', 'NewdbController@index');
 // Route::get('/newdb', 'NewdbController@index');
+
+
+//Route::get('/newdb/{id}', 'NewdbController@index');
+
+Route::get('/testroute', 'NewdbController@index');
+
+Route::get('/printcount', 'NewdbController@index2');
+
+Route::get('/todolist/{id}', 'NewdbController@todofunc' ,function ($id) {
+    //return $id;
+});
+
+
+//Route::get('user/{id}', function ($id) {
+    //return 'User '.$id;
+//});
+
+
+Route::post('/newdata', 'NewdbController@store');
