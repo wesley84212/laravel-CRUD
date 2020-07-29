@@ -14,9 +14,27 @@ class NewdbController extends Controller
      */
     public function index()
     {
-        //
-        $newdb = newdb::all();
-        return response()->json($newdb);
+
+        $inin = newdb::all();
+        // $value = $inin[0]->get('id','status','content');
+        return response()->json($inin);
+
+
+    }
+
+
+    //單一查找
+    public function todofunc($id)
+    {
+
+        // $idhowmuch =newdb::all();
+        // $idhowmuch = $idhowmuch->where('id', $id);
+        // $idhowmuch->all();
+        $idhowmuch = newdb::find($id);
+
+        echo($idhowmuch->content);
+
+
     }
 
     /**
@@ -39,6 +57,34 @@ class NewdbController extends Controller
     {
         //
     }
+
+    public function store2($id , Request $request)
+    {
+
+        // $updatedata = newdb::find(1);
+        // $updatedata->content = 'New Flight Name';
+        // $updatedata->status = '1';
+        // $updatedata->save();
+
+        $updatedata = newdb::where('id', $id)
+          ->update(['status'=>$request->status,'content' => $request->content]);
+
+
+        return '更新成功';
+
+    }
+
+
+    public function store3($id)
+    {
+
+        $deldata = newdb::where('id',$id)->delete();
+
+        return 'delete success';
+
+    }
+
+
 
     /**
      * Display the specified resource.
