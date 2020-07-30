@@ -23,20 +23,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Route::get('/newdb', 'NewdbController@index');
 
 
-//Route::get('/newdb/{id}', 'NewdbController@index');
-
 Route::get('/testroute', 'NewdbController@index');
 
-Route::get('/printcount', 'NewdbController@index2');
-
+//依照不同id 顯示對應的資料
 Route::get('/todolist/{id}', 'NewdbController@todofunc' ,function ($id) {
     //return $id;
 });
 
-
-//Route::get('user/{id}', function ($id) {
-    //return 'User '.$id;
-//});
-
-
+//新增一筆資料
 Route::post('/newdata', 'NewdbController@store');
+
+
+//更新一筆資料
+Route::put('/updatedata/{id}', 'NewdbController@store2',function ($id) {
+});
+
+
+//
+//刪除資料
+Route::delete('/deldata/{id}', 'NewdbController@store3',function ($id) {
+    //return 'delete success';
+});
