@@ -13,6 +13,7 @@ class CreateNewdbsTable extends Migration
      */
     public function up()
     {
+                      //資料表名稱
         Schema::create('newdbs', function (Blueprint $table) {
             $table->id();
             $table->char('status');

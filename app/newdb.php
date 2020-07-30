@@ -8,4 +8,8 @@ class newdb extends Model
 {
     //
     protected $table = 'newdbs';
+
+    protected $fillable =['status','content'];
+
 }
+

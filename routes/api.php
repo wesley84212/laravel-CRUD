@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/newdb', 'NewdbController@index');
+//Route::get('/newdb', 'NewdbController@index');
 // Route::get('/newdb', 'NewdbController@index');
 
 
