@@ -38,41 +38,17 @@ class NewdbController extends Controller
 
     }
 
-    public function newdata()
-    {
-
-        $y =newdb::count();
-        echo $testcount;
-
-
-    }
-
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
         //
         //$newdata = new newdb;
         $newdata = newdb::create($request->all());
-
         return $newdata;
 
         // $newdata->status = $request->status;
@@ -82,7 +58,7 @@ class NewdbController extends Controller
         // echo $request;
     }
 
-    public function store2($id , Request $request)
+    public function update($id , Request $request)
     {
 
         // $updatedata = newdb::find(1);
@@ -93,19 +69,20 @@ class NewdbController extends Controller
         $updatedata = newdb::where('id', $id)
           ->update(['status'=>$request->status,'content' => $request->content]);
 
-
-        return '更新成功';
+        if($updatedata ==1) {
+            $result = ['status'=>200,'message'=>'update success'];
+            return response()->json($result);
+        }else {
+            $result = ['status'=>400,'message'=>'update fail'];
+            return response()->json($result);
+        }
 
     }
 
-
-    public function store3($id)
+    public function delete($id)
     {
-
         $deldata = newdb::where('id',$id)->delete();
-
         return 'delete success';
-
     }
 
 
@@ -128,18 +105,6 @@ class NewdbController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(newdb $newdb)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\newdb  $newdb
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, newdb $newdb)
     {
         //
     }

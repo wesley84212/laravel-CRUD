@@ -18,29 +18,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-//Route::get('/newdb', 'NewdbController@index');
-// Route::get('/newdb', 'NewdbController@index');
-
-
 Route::get('/testroute', 'NewdbController@index');
-
 //依照不同id 顯示對應的資料
-Route::get('/todolist/{id}', 'NewdbController@todofunc' ,function ($id) {
-    //return $id;
-});
-
+Route::get('/todolist/{id}', 'NewdbController@todofunc');
 //新增一筆資料
-Route::post('/newdata', 'NewdbController@store');
-
-
+Route::post('/newdata', 'NewdbController@create');
 //更新一筆資料
-Route::put('/updatedata/{id}', 'NewdbController@store2',function ($id) {
-});
-
-
-//
+Route::put('/updatedata/{id}', 'NewdbController@update');
 //刪除資料
-Route::delete('/deldata/{id}', 'NewdbController@store3',function ($id) {
-    //return 'delete success';
-});
+Route::delete('/deldata/{id}', 'NewdbController@delete');
+
+
+Route::get('/changeLog',         'ChangeLogController@index');
+Route::get('/changeLog/{id}',    'ChangeLogController@findOne');
+Route::post('/changeLog',        'ChangeLogController@create');
+Route::put('/changeLog/{id}',    'ChangeLogController@update');
+Route::delete('/changeLog/{id}', 'ChangeLogController@delete');
