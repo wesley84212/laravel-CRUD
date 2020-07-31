@@ -15,6 +15,14 @@ class ChangeLogController extends Controller
     public function index()
     {
         //
+        $data = changeLog::select('value','create_date')->get();
+        return response()->json($data);
+    }
+
+    public function findOne($id)
+    {
+        $data = changeLog::find($id);
+        return response()->json($data);
     }
 
     /**
@@ -22,9 +30,19 @@ class ChangeLogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $input)
     {
-        //
+        $data = new changeLog;
+
+        $data->value = $input->value;
+        $data->create_date = $input->create_date;
+        if ($data->save() == 1) {
+            $res = ['status' => 200, 'message' => 'create success'];
+            return response()->json($res);
+        } else {
+            $res = ['status' => 400, 'message' => 'create error'];
+            return response()->json($res);
+        }
     }
 
     /**
@@ -67,9 +85,30 @@ class ChangeLogController extends Controller
      * @param  \App\changeLog  $changeLog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, changeLog $changeLog)
+    public function update($id, Request $request, changeLog $changeLog)
     {
         //
+        $data = changeLog::find($id);
+        $data->value = $request->value;
+        if ($data->save() == 1) {
+            $res = ['status' => 200, 'message' => 'update success'];
+            return response()->json($res);
+        } else {
+            $res = ['status' => 400, 'message' => 'update error'];
+            return response()->json($res);
+        }
+    }
+
+    public function delete($id)
+    {
+        $data = changeLog::find($id);
+        if ($data->delete() == 1) {
+            $res = ['status' => 200, 'message' => 'delete success'];
+            return response()->json($res);
+        } else {
+            $res = ['status' => 400, 'message' => 'delete error'];
+            return response()->json($res);
+        }
     }
 
     /**
